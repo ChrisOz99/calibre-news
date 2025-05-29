@@ -138,10 +138,12 @@ class ft(BasicNewsRecipe):
         title_image_url = ''
 
         def resize_img(img):
-            a = 'https://www.ft.com/__origami/service/image/v2/images/raw/'
-            b = quote(img, safe='')
-            c = '?dpr=2&fit=scale-down&quality=medium&source=next&width=400'
-            return a + b + c
+    # Remove format extension and enforce jpg
+    img = re.sub(r'(\.png|\.webp|\.svg)$', '.jpg', img, flags=re.IGNORECASE)
+    a = 'https://www.ft.com/__origami/service/image/v2/images/raw/'
+    b = quote(img, safe='')
+    c = '?dpr=2&fit=scale-down&quality=medium&source=next&width=400&format=jpg'
+    return a + b + c
 
         if data.get('image') and data['image'].get('url'):
             image_url = data['image']['url']
