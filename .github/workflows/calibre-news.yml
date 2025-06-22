@@ -27,6 +27,7 @@ jobs:
       to: ${{ secrets.TO }}
       ext: ${{ secrets.FORMAT || 'epub' }}
       size: ${{ secrets.SIZE || 25 }}
+      FT_COOKIES: ${{ secrets.FT_COOKIES }}
     steps:
       - name: Checking Variable
         run: |
