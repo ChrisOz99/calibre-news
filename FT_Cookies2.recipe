@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import random
 from urllib.parse import quote
 
 from html5_parser import parse
@@ -27,6 +28,14 @@ class ft(BasicNewsRecipe):
     masthead_url = 'https://im.ft-static.com/m/img/masthead_main.jpg'
     simultaneous_downloads = 1
     delay = 1
+    def get_url_specific_delay(self, url):
+        if "ft.com" in url and "origami" not in url:
+            return random.uniform(2.4, 6.7)
+
+        if "origami" in url:
+            return random.uniform(0.9, 1.8)
+
+        return None
 
     extra_css = '''
         .article-info__time-byline {font-size:small; font-weight:bold; }
